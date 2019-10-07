@@ -12,7 +12,7 @@ import java.util.Arrays;
  * @author jaime
  */
 public class ipcalc extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form ipcalc
      */
@@ -114,12 +114,12 @@ public class ipcalc extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if(ipTxt1.getText().contains(".")){
             
-            String[] ip = ipTxt1.getText().split("[.]",4);
+            String[] ip = Treatment.input(ipTxt1.getText()); /* ipTxt1.getText().split("[.]",4);*/
             resulN1.setText(Arrays.toString(ip));
             //ip[i] = Integer.parseInt(ipTxt1.getText().substring(a,b)); //coloca condiçao para auto preenchimento com 0
         }
         else{
-        resulN1.setText("Erro Ex:192.168.0.1");
+        resulN1.setText("Erro Ex:192.168.000.100");
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
