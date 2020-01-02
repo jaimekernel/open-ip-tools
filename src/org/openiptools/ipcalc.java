@@ -114,8 +114,9 @@ public class ipcalc extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if(ipTxt1.getText().contains(".")){
             
-            String[] ip = Treatment.input(ipTxt1.getText()); /* ipTxt1.getText().split("[.]",4);*/
-            resulN1.setText(Arrays.toString(ip));
+            String[] ip_ok = Treatment.input(ipTxt1.getText()); /* ipTxt1.getText().split("[.]",4);*/
+            String rede = Treatment.inputmask(maskTx1.getText());
+            resulN1.setText(rede);
             //ip[i] = Integer.parseInt(ipTxt1.getText().substring(a,b)); //coloca condiçao para auto preenchimento com 0
         }
         else{
