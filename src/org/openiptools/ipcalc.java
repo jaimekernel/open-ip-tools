@@ -124,7 +124,7 @@ public class ipcalc extends javax.swing.JFrame {
     
     private void ipTxt1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ipTxt1ActionPerformed
             
-        //EXCLUIR!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        //EXCLUIR!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! teste
         // TODO add your handling code here:
     }//GEN-LAST:event_ipTxt1ActionPerformed
 
