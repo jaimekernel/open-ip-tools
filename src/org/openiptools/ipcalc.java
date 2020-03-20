@@ -1,6 +1,6 @@
 /*
  * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
+ *+ To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package org.openiptools;
@@ -18,6 +18,8 @@ public class ipcalc extends javax.swing.JFrame {
      */
     public ipcalc() {
         initComponents();
+        resulN1.setText("Aguardando Inserção de dados...");
+        
     }
 
     /**
@@ -36,11 +38,17 @@ public class ipcalc extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         resulN1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        resulN2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("LOGO_Experimental Project");
 
+        ipTxt1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ipTxt1MouseClicked(evt);
+            }
+        });
         ipTxt1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ipTxt1ActionPerformed(evt);
@@ -49,8 +57,15 @@ public class ipcalc extends javax.swing.JFrame {
 
         jLabel2.setText("IP:");
 
+        maskTx1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                maskTx1FocusGained(evt);
+            }
+        });
+
         jLabel3.setText("Mask:");
 
+        resulN1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         resulN1.setText("jLabel4");
 
         jButton1.setText("OK");
@@ -60,27 +75,27 @@ public class ipcalc extends javax.swing.JFrame {
             }
         });
 
+        resulN2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        resulN2.setText("jLabel4;");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addGap(37, 37, 37)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(ipTxt1)
-                            .addComponent(maskTx1))
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(168, 168, 168)
-                        .addComponent(resulN1)))
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3))
+                .addGap(37, 37, 37)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(resulN2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(resulN1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ipTxt1)
+                    .addComponent(maskTx1))
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
                 .addContainerGap(67, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -99,24 +114,28 @@ public class ipcalc extends javax.swing.JFrame {
                     .addComponent(jLabel3))
                 .addGap(32, 32, 32)
                 .addComponent(resulN1)
-                .addContainerGap(220, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(resulN2)
+                .addContainerGap(196, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void ipTxt1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ipTxt1ActionPerformed
             
-        //int ip = Integer.parseInt(ipTxt1.getText());
+        //EXCLUIR!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         // TODO add your handling code here:
     }//GEN-LAST:event_ipTxt1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if(ipTxt1.getText().contains(".")){
             
-            String[] ip_ok = Treatment.input(ipTxt1.getText()); /* ipTxt1.getText().split("[.]",4);*/
-            String rede = Treatment.inputmask(maskTx1.getText());
-            resulN1.setText(rede);
+            String[] treated = {ipTxt1.getText(), maskTx1.getText()};
+            treated = Treatment.input(treated);
+            String[] ipv4 = Core.input(treated); 
+            resulN1.setText(ipv4[0]);
+            resulN2.setText(ipv4[1]);
             //ip[i] = Integer.parseInt(ipTxt1.getText().substring(a,b)); //coloca condiçao para auto preenchimento com 0
         }
         else{
@@ -125,6 +144,16 @@ public class ipcalc extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void ipTxt1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ipTxt1MouseClicked
+        // TODO add your handling code here:
+        resulN1.setText("Ex 192.168.1.0");
+    }//GEN-LAST:event_ipTxt1MouseClicked
+
+    private void maskTx1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_maskTx1FocusGained
+        // TODO add your handling code here:
+        resulN1.setText("Mask 255.255.*.* or /24");
+    }//GEN-LAST:event_maskTx1FocusGained
+    
     /**
      * @param args the command line arguments
      */
@@ -168,5 +197,6 @@ public class ipcalc extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JTextField maskTx1;
     private javax.swing.JLabel resulN1;
+    private javax.swing.JLabel resulN2;
     // End of variables declaration//GEN-END:variables
 }
